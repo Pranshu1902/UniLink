@@ -8,11 +8,11 @@ let clubSchema = new Schema(
       required: true,
     },
     yearFounded: {
-      type: Int8Array,
+      type: Number,
       required: true,
     },
     numberOfMembers: {
-      type: Int16Array,
+      type: Number,
       required: true,
     },
     post: [
@@ -44,7 +44,7 @@ let studentSchema = new Schema(
     },
     organizationId: {
       // college ID
-      type: Int16Array,
+      type: Number,
       required: true,
     },
     description: {

@@ -20,7 +20,7 @@ router.get("/clubs/:id", (request, response) => {
 
 // create new club, PENDING
 router.post("/clubs/", (request, response) => {
-  Club.insertOne(data);
+  Club.insertOne({ name: "GDSC", yearFounded: 2019, numberOfMembers: 50 });
 });
 
 // update club details, PENDING
@@ -62,6 +62,7 @@ router
   .get((req, res) => {
     //advanced routing used to get id of the user can be userid too not predefinded
     //console.log(req.user)
+    User.findOne({ id: id });
     res.send(`Get user id ${req.params.id}`);
   })
   .put((req, res) => {

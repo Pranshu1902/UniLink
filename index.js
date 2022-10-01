@@ -6,6 +6,7 @@ const port = process.env.PORT || 5000;
 const routes = require("./router/user");
 const connectDB = require("./models/db");
 connectDB();
+
 // home page route added
 app.get("/", function (request, response) {
   response.sendFile("home.html", { root: __dirname });
