@@ -1,26 +1,32 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// let club = new Schema(
-//   {
-//     name: {
-//       type: String,
-//       required: true,
-//     },
-//     yearFounded: {
-//       type: Int8Array,
-//       required: true,
-//     },
-//     numberOfMembers: {
-//       type: Int16Array,
-//       required: true,
-//     },
-//   },
-//   {
-//     timestamps: true,
-//     collection: "clubs",
-//   }
-// );
+let clubSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    yearFounded: {
+      type: Int8Array,
+      required: true,
+    },
+    numberOfMembers: {
+      type: Int16Array,
+      required: true,
+    },
+    post: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
+  },
+  {
+    timestamps: true,
+    collection: "clubs",
+  }
+);
 
 let studentSchema = new Schema(
   {
@@ -66,4 +72,7 @@ let studentSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model("User", studentSchema);
+const User = mongoose.model("User", studentSchema);
+const Club = mongoose.model("Club", clubSchema);
+
+module.exports = { User, Club };
