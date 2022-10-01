@@ -5,37 +5,53 @@ const { User, Club } = require("../models/user");
 // club APIs
 
 // get all clubs
-router.get("/clubs", (request, response) => {
+router.get("/clubs/", (request, response) => {
   Club.find({}, (err, clubs) => {
     response.send(clubs);
   });
 });
 
 // get club by id
-router.get("/clubs/:id", (request, response) => {
-  Club.findById(id, (err, clubs) => {
+router.get("/clubs/:id/", (request, response) => {
+  Club.findById(request.params.id, (err, clubs) => {
+    console.log(err);
     response.send(clubs);
   });
 });
 
-// create new club, PENDING
+// create new club
 router.post("/clubs/", (request, response) => {
-  Club.insertOne({ name: "GDSC", yearFounded: 2019, numberOfMembers: 50 });
+  console.log("creating club...");
+  Club.create(
+    { name: "MIC", yearFounded: 2020, numberOfMembers: 25 },
+    (err, club) => {
+      if (!err) {
+        response.send(club);
+      } else {
+        console.log("Failed");
+      }
+    }
+  );
+  console.log("club created!");
 });
 
-// update club details, PENDING
-router.post("/clubs/:id/update", (response, request) => {
-  Club.replaceOne({ id }, (err, res) => {
-    if (err) {
-      console.log(err);
+// update club details
+router.post("/clubs/:id/update/", (request, response) => {
+  Club.updateOne(
+    { id: request.params.id },
+    { $set: { name: "Android Club" } },
+    (err, res) => {
+      if (err) {
+        console.log(err);
+      }
+      response.send(res);
     }
-    response.send(res);
-  });
+  );
 });
 
 // delete club
-router.post("/clubs/:id", (request, response) => {
-  Club.deleteOne({ id: id }, (err, res) => {
+router.delete("/clubs/:id/", (request, response) => {
+  Club.deleteOne({ id: request.params.id }, (err, res) => {
     if (err) {
       console.log(err);
     }
