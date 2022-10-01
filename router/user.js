@@ -1,4 +1,5 @@
 const express = require("express");
+const { response } = require("../app");
 const router = express.Router();
 const { User, Club } = require("../models/user");
 
@@ -22,16 +23,14 @@ router.get("/clubs/:id/", (request, response) => {
 // create new club
 router.post("/clubs/", (request, response) => {
   console.log("creating club...");
-  Club.create(
-    { name: "MIC", yearFounded: 2020, numberOfMembers: 25 },
-    (err, club) => {
-      if (!err) {
-        response.send(club);
-      } else {
-        console.log("Failed");
-      }
+  console.log(request);
+  Club.create(request.query, (err, club) => {
+    if (!err) {
+      response.send(club);
+    } else {
+      console.log("Failed");
     }
-  );
+  });
   console.log("club created!");
 });
 
@@ -39,7 +38,7 @@ router.post("/clubs/", (request, response) => {
 router.post("/clubs/:id/update/", (request, response) => {
   Club.updateOne(
     { id: request.params.id },
-    { $set: { name: "Android Club" } },
+    { $set: request.query },
     (err, res) => {
       if (err) {
         console.log(err);
@@ -59,43 +58,63 @@ router.delete("/clubs/:id/", (request, response) => {
   });
 });
 
-// user APIs
-
-router.get("/", (req, res) => {
-  res.send("userlist");
-});
-
-router.get("/new", (req, res) => {
-  res.send("usernew");
-});
-
-router.post("/", (req, res) => {
-  res.send("create user");
-});
-
-router
-  .route("/:id")
-  .get((req, res) => {
-    //advanced routing used to get id of the user can be userid too not predefinded
-    //console.log(req.user)
-    User.findOne({ id: id });
-    res.send(`Get user id ${req.params.id}`);
-  })
-  .put((req, res) => {
-    //advanced routing used to get id of the user can be userid too not predefinded
-    req.params.id;
-    res.send(`update user id ${req.params.id}`);
-  })
-  .delete((req, res) => {
-    //advanced routing used to get id of the user can be userid too not predefinded
-    req.params.id;
-    res.send(`delete user id ${req.params.id}`);
+//
+// USER APIs
+//
+// get all users
+router.get("/user/", (request, response) => {
+  User.find({}, (err, users) => {
+    if (!err) {
+      response.send(users);
+    }
+    console.log(err);
   });
-
-const users = [{ name: "rohan" }, { name: "sally" }];
-router.param("id", (req, res, next, id) => {
-  req.user = users[id];
-  next(); //next fn
 });
+
+// create user
+router.post("/user/", (request, response) => {
+  User.create(request.query, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
+// get specific user
+router.get("/user/:id/", (request, response) => {
+  User.findOne({ id: request.params.id }, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
+// update specific user
+router.put("/user/:id/", (request, response) => {
+  User.replaceOne({ id: request.params.id }, request.query, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
+// delete specific user
+router.delete("/user/:id/", (request, response) => {
+  User.deleteOne({ id: request.params.id }, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
+// const users = [{ name: "rohan" }, { name: "sally" }];
+// router.param("id", (req, res, next, id) => {
+//   req.user = users[id];
+//   next(); //next fn
+// });
 
 module.exports = router;
