@@ -3,7 +3,7 @@ const colors = require("colors");
 
 const port = process.env.PORT || 5000;
 
-const routes = require("./router/user");
+const routes = require("./router/api");
 const connectDB = require("./models/db");
 connectDB();
 

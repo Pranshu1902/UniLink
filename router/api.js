@@ -1,7 +1,7 @@
 const express = require("express");
 const { response } = require("../app");
 const router = express.Router();
-const { User, Club } = require("../models/user");
+const { User, Club } = require("../models/models");
 
 // club APIs
 
