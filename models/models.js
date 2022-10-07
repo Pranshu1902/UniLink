@@ -1,7 +1,24 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let clubSchema = new Schema(
+const collegeSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    yearFounded: {
+      type: Number,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+    collection: "college",
+  }
+);
+
+const clubSchema = new Schema(
   {
     name: {
       type: String,
@@ -28,7 +45,7 @@ let clubSchema = new Schema(
   }
 );
 
-let studentSchema = new Schema(
+const studentSchema = new Schema(
   {
     name: {
       type: String,
@@ -72,7 +89,8 @@ let studentSchema = new Schema(
   }
 );
 
+const College = mongoose.model("College", collegeSchema);
 const User = mongoose.model("User", studentSchema);
 const Club = mongoose.model("Club", clubSchema);
 
-module.exports = { User, Club };
+module.exports = { College, User, Club };

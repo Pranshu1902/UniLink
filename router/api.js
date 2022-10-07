@@ -1,10 +1,57 @@
 const express = require("express");
 const { response } = require("../app");
 const router = express.Router();
-const { User, Club } = require("../models/models");
+const { College, User, Club } = require("../models/models");
 
+//
+// College APIs
+//
+
+// get all colleges
+router.get("/college/", (request, response) => {
+  College.find({}, (err, colleges) => {
+    response.send(colleges);
+  });
+});
+
+// create a college
+router.post("/college/", (request, response) => {
+  College.create(request.query, (err, college) => {
+    if (!err) {
+      response.send(college);
+    } else {
+      console.log("Failed");
+    }
+  });
+});
+
+// delete a college
+router.delete("/college/:id/", (request, response) => {
+  College.deleteOne({ id: request.params.id }, (err, res) => {
+    if (err) {
+      console.log(err);
+    }
+    response.send(res);
+  });
+});
+
+// update a college
+router.put("/college/:id/", (request, response) => {
+  College.updateOne(
+    { id: request.params.id },
+    { $set: request.query },
+    (err, res) => {
+      if (err) {
+        console.log(err);
+      }
+      response.send(res);
+    }
+  );
+});
+
+//
 // club APIs
-
+//
 // get all clubs
 router.get("/clubs/", (request, response) => {
   Club.find({}, (err, clubs) => {
