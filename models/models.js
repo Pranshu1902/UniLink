@@ -28,6 +28,10 @@ const contestSchema = new Schema(
       type: String,
       required: true,
     },
+    type: {
+      type: String, // like hackathon, racing, etc.
+      required: false,
+    },
   },
   { timestamps: true, collation: "contests" }
 );
@@ -56,6 +60,68 @@ const clubSchema = new Schema(
   {
     timestamps: true,
     collection: "clubs",
+  }
+);
+
+const internshipSchema = new Schema(
+  {
+    companyName: {
+      type: String,
+      required: true,
+    },
+    position: {
+      type: String,
+      required: true,
+    },
+    startDate: {
+      type: Date,
+      required: true,
+    },
+    endDate: {
+      type: Date,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    techStack: {
+      type: String,
+      required: false,
+    },
+  },
+  {
+    timestamps: true,
+    collection: "internship",
+  }
+);
+
+const fellowshipSchema = new Schema(
+  {
+    companyName: {
+      type: String,
+      required: true,
+    },
+    startDate: {
+      type: Date,
+      required: true,
+    },
+    endDate: {
+      type: Date,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    techStack: {
+      type: String,
+      required: false,
+    },
+  },
+  {
+    timestamps: true,
+    collection: "fellowship",
   }
 );
 
@@ -107,5 +173,7 @@ const College = mongoose.model("College", collegeSchema);
 const User = mongoose.model("User", studentSchema);
 const Club = mongoose.model("Club", clubSchema);
 const Contest = mongoose.model("Contest", contestSchema);
+const Internship = mongoose.model("Internship", internshipSchema);
+const Fellowship = mongoose.model("Fellowship", fellowshipSchema);
 
-module.exports = { College, User, Club, Contest };
+module.exports = { College, User, Club, Contest, Internship, Fellowship };
