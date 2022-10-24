@@ -18,6 +18,20 @@ const collegeSchema = new Schema(
   }
 );
 
+const contestSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true, collation: "contests" }
+);
+
 const clubSchema = new Schema(
   {
     name: {
@@ -92,5 +106,6 @@ const studentSchema = new Schema(
 const College = mongoose.model("College", collegeSchema);
 const User = mongoose.model("User", studentSchema);
 const Club = mongoose.model("Club", clubSchema);
+const Contest = mongoose.model("Contest", contestSchema);
 
-module.exports = { College, User, Club };
+module.exports = { College, User, Club, Contest };
