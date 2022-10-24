@@ -169,11 +169,33 @@ const studentSchema = new Schema(
   }
 );
 
+const chatSchema = new Schema(
+  {
+    text: {
+      type: String,
+      required: true,
+    },
+    fromId: {
+      type: Number,
+      required: true,
+    },
+    toId: {
+      type: Number,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+    collection: "chats",
+  }
+);
+
 const College = mongoose.model("College", collegeSchema);
 const User = mongoose.model("User", studentSchema);
 const Club = mongoose.model("Club", clubSchema);
 const Contest = mongoose.model("Contest", contestSchema);
 const Internship = mongoose.model("Internship", internshipSchema);
 const Fellowship = mongoose.model("Fellowship", fellowshipSchema);
+const Chat = mongoose.model("Chats", chatSchema);
 
-module.exports = { College, User, Club, Contest, Internship, Fellowship };
+module.exports = { College, User, Club, Contest, Internship, Fellowship, Chat };
