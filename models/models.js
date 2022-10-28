@@ -125,6 +125,34 @@ const fellowshipSchema = new Schema(
   }
 );
 
+const socialMediaSchema = new Schema(
+  {
+    mobile: {
+      type: String,
+      required: false,
+    },
+    email: {
+      type: String,
+      required: false,
+    },
+    twitter: {
+      type: String,
+      required: false,
+    },
+    linkedin: {
+      type: String,
+      required: false,
+    },
+    instagram: {
+      type: String,
+      required: false,
+    },
+  },
+  {
+    collection: "socialMedia",
+  }
+);
+
 const studentSchema = new Schema(
   {
     name: {
@@ -162,6 +190,10 @@ const studentSchema = new Schema(
       required: false,
     },
     clubs: [{ type: String, required: false }], // clubs students are part of
+    socialMedia: {
+      type: socialMediaSchema,
+      required: true,
+    },
   },
   {
     timestamps: true,
@@ -219,6 +251,7 @@ const Internship = mongoose.model("Internship", internshipSchema);
 const Fellowship = mongoose.model("Fellowship", fellowshipSchema);
 const Chat = mongoose.model("Chats", chatSchema);
 const Blog = mongoose.model("Blogs", blogSchema);
+const socialMedia = mongoose.model("Social Media", socialMediaSchema);
 
 module.exports = {
   College,
@@ -229,4 +262,5 @@ module.exports = {
   Fellowship,
   Chat,
   Blog,
+  socialMedia,
 };
