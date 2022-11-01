@@ -370,6 +370,59 @@ router.delete("/chat/:id/", (request, response) => {
   });
 });
 
+//
+// Blog APIs
+//
+// get all blog
+router.get("/blog/", (request, response) => {
+  Blog.find({}, (err, users) => {
+    if (!err) {
+      response.send(users);
+    }
+    console.log(err);
+  });
+});
+
+// create blog
+router.post("/blog/", (request, response) => {
+  Blog.create(request.query, (err, blog) => {
+    if (!err) {
+      response.send(blog);
+    }
+    console.log(err);
+  });
+});
+
+// get specific blog
+router.get("/blog/:id/", (request, response) => {
+  Blog.findOne({ id: request.params.id }, (err, blog) => {
+    if (!err) {
+      response.send(blog);
+    }
+    console.log(err);
+  });
+});
+
+// update specific blog
+router.put("/blog/:id/", (request, response) => {
+  Blog.replaceOne({ id: request.params.id }, request.query, (err, blog) => {
+    if (!err) {
+      response.send(blog);
+    }
+    console.log(err);
+  });
+});
+
+// delete specific blog
+router.delete("/blog/:id/", (request, response) => {
+  Blog.deleteOne({ id: request.params.id }, (err, blog) => {
+    if (!err) {
+      response.send(blog);
+    }
+    console.log(err);
+  });
+});
+
 // const users = [{ name: "rohan" }, { name: "sally" }];
 // router.param("id", (req, res, next, id) => {
 //   req.user = users[id];
