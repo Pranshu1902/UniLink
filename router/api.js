@@ -1,7 +1,7 @@
 const express = require("express");
 const { response } = require("../app");
 const router = express.Router();
-const { College, User, Club, Contest } = require("../models/models");
+const { College, User, Club, Contest, Internship } = require("../models/models");
 
 //
 // College APIs
@@ -204,6 +204,59 @@ router.put("/user/:id/", (request, response) => {
 // delete specific contest
 router.delete("/user/:id/", (request, response) => {
   Contest.deleteOne({ id: request.params.id }, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
+//
+// Internship APIs
+//
+// get all internship
+router.get("/user/", (request, response) => {
+  Internship.find({}, (err, users) => {
+    if (!err) {
+      response.send(users);
+    }
+    console.log(err);
+  });
+});
+
+// create internship
+router.post("/user/", (request, response) => {
+  Internship.create(request.query, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
+// get specific internship
+router.get("/user/:id/", (request, response) => {
+  Internship.findOne({ id: request.params.id }, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
+// update specific internship
+router.put("/user/:id/", (request, response) => {
+  Internship.replaceOne({ id: request.params.id }, request.query, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
+// delete specific internship
+router.delete("/user/:id/", (request, response) => {
+  Internship.deleteOne({ id: request.params.id }, (err, user) => {
     if (!err) {
       response.send(user);
     }
