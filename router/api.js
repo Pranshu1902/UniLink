@@ -317,6 +317,59 @@ router.delete("/fellowship/:id/", (request, response) => {
   });
 });
 
+//
+// Chat APIs
+//
+// get all chat
+router.get("/chat/", (request, response) => {
+  Chat.find({}, (err, users) => {
+    if (!err) {
+      response.send(users);
+    }
+    console.log(err);
+  });
+});
+
+// create chat
+router.post("/chat/", (request, response) => {
+  Chat.create(request.query, (err, chat) => {
+    if (!err) {
+      response.send(chat);
+    }
+    console.log(err);
+  });
+});
+
+// get specific chat
+router.get("/chat/:id/", (request, response) => {
+  Chat.findOne({ id: request.params.id }, (err, chat) => {
+    if (!err) {
+      response.send(chat);
+    }
+    console.log(err);
+  });
+});
+
+// update specific chat
+router.put("/chat/:id/", (request, response) => {
+  Chat.replaceOne({ id: request.params.id }, request.query, (err, chat) => {
+    if (!err) {
+      response.send(chat);
+    }
+    console.log(err);
+  });
+});
+
+// delete specific chat
+router.delete("/chat/:id/", (request, response) => {
+  Chat.deleteOne({ id: request.params.id }, (err, chat) => {
+    if (!err) {
+      response.send(chat);
+    }
+    console.log(err);
+  });
+});
+
 // const users = [{ name: "rohan" }, { name: "sally" }];
 // router.param("id", (req, res, next, id) => {
 //   req.user = users[id];
