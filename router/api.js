@@ -1,7 +1,7 @@
 const express = require("express");
 const { response } = require("../app");
 const router = express.Router();
-const { College, User, Club, Contest, Internship } = require("../models/models");
+const { College, User, Club, Contest, Internship, Fellowship, Blog, socialMedia } = require("../models/models");
 
 //
 // College APIs
@@ -172,7 +172,7 @@ router.get("/contest/", (request, response) => {
 });
 
 // create contest
-router.post("/user/", (request, response) => {
+router.post("/contest/", (request, response) => {
   Contest.create(request.query, (err, user) => {
     if (!err) {
       response.send(user);
@@ -182,7 +182,7 @@ router.post("/user/", (request, response) => {
 });
 
 // get specific contest
-router.get("/user/:id/", (request, response) => {
+router.get("/contest/:id/", (request, response) => {
   Contest.findOne({ id: request.params.id }, (err, user) => {
     if (!err) {
       response.send(user);
@@ -192,7 +192,7 @@ router.get("/user/:id/", (request, response) => {
 });
 
 // update specific contest
-router.put("/user/:id/", (request, response) => {
+router.put("/contest/:id/", (request, response) => {
   Contest.replaceOne({ id: request.params.id }, request.query, (err, user) => {
     if (!err) {
       response.send(user);
@@ -202,7 +202,7 @@ router.put("/user/:id/", (request, response) => {
 });
 
 // delete specific contest
-router.delete("/user/:id/", (request, response) => {
+router.delete("/contest/:id/", (request, response) => {
   Contest.deleteOne({ id: request.params.id }, (err, user) => {
     if (!err) {
       response.send(user);
@@ -215,7 +215,7 @@ router.delete("/user/:id/", (request, response) => {
 // Internship APIs
 //
 // get all internship
-router.get("/user/", (request, response) => {
+router.get("/internship/", (request, response) => {
   Internship.find({}, (err, users) => {
     if (!err) {
       response.send(users);
@@ -225,7 +225,7 @@ router.get("/user/", (request, response) => {
 });
 
 // create internship
-router.post("/user/", (request, response) => {
+router.post("/internship/", (request, response) => {
   Internship.create(request.query, (err, user) => {
     if (!err) {
       response.send(user);
@@ -235,7 +235,7 @@ router.post("/user/", (request, response) => {
 });
 
 // get specific internship
-router.get("/user/:id/", (request, response) => {
+router.get("/internship/:id/", (request, response) => {
   Internship.findOne({ id: request.params.id }, (err, user) => {
     if (!err) {
       response.send(user);
@@ -245,7 +245,7 @@ router.get("/user/:id/", (request, response) => {
 });
 
 // update specific internship
-router.put("/user/:id/", (request, response) => {
+router.put("/internship/:id/", (request, response) => {
   Internship.replaceOne({ id: request.params.id }, request.query, (err, user) => {
     if (!err) {
       response.send(user);
@@ -255,8 +255,61 @@ router.put("/user/:id/", (request, response) => {
 });
 
 // delete specific internship
-router.delete("/user/:id/", (request, response) => {
+router.delete("/internship/:id/", (request, response) => {
   Internship.deleteOne({ id: request.params.id }, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
+//
+// Fellowship APIs
+//
+// get all fellowships
+router.get("/fellowship/", (request, response) => {
+  Fellowship.find({}, (err, users) => {
+    if (!err) {
+      response.send(users);
+    }
+    console.log(err);
+  });
+});
+
+// create fellowship
+router.post("/fellowship/", (request, response) => {
+  Fellowship.create(request.query, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
+// get specific fellowship
+router.get("/fellowship/:id/", (request, response) => {
+  Fellowship.findOne({ id: request.params.id }, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
+// update specific fellowship
+router.put("/fellowship/:id/", (request, response) => {
+  Fellowship.replaceOne({ id: request.params.id }, request.query, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
+// delete specific fellowship
+router.delete("/fellowship/:id/", (request, response) => {
+  Fellowship.deleteOne({ id: request.params.id }, (err, user) => {
     if (!err) {
       response.send(user);
     }
