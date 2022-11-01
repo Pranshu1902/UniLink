@@ -1,7 +1,7 @@
 const express = require("express");
 const { response } = require("../app");
 const router = express.Router();
-const { College, User, Club } = require("../models/models");
+const { College, User, Club, Contest } = require("../models/models");
 
 //
 // College APIs
@@ -151,6 +151,59 @@ router.put("/user/:id/", (request, response) => {
 // delete specific user
 router.delete("/user/:id/", (request, response) => {
   User.deleteOne({ id: request.params.id }, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
+//
+// Contest APIs
+//
+// get all contests
+router.get("/contest/", (request, response) => {
+  Contest.find({}, (err, users) => {
+    if (!err) {
+      response.send(users);
+    }
+    console.log(err);
+  });
+});
+
+// create contest
+router.post("/user/", (request, response) => {
+  Contest.create(request.query, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
+// get specific contest
+router.get("/user/:id/", (request, response) => {
+  Contest.findOne({ id: request.params.id }, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
+// update specific contest
+router.put("/user/:id/", (request, response) => {
+  Contest.replaceOne({ id: request.params.id }, request.query, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
+// delete specific contest
+router.delete("/user/:id/", (request, response) => {
+  Contest.deleteOne({ id: request.params.id }, (err, user) => {
     if (!err) {
       response.send(user);
     }
