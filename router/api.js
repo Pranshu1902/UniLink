@@ -423,6 +423,59 @@ router.delete("/blog/:id/", (request, response) => {
   });
 });
 
+//
+// socialMedia APIs
+//
+// get all socialMedia
+router.get("/socialMedia/", (request, response) => {
+  socialMedia.find({}, (err, users) => {
+    if (!err) {
+      response.send(users);
+    }
+    console.log(err);
+  });
+});
+
+// create socialMedia
+router.post("/socialMedia/", (request, response) => {
+  socialMedia.create(request.query, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+// get specific socialMedia
+router.get("/socialMedia/:id/", (request, response) => {
+  socialMedia.findOne({ id: request.params.id }, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+// update specific socialMedia
+router.put("/socialMedia/:id/", (request, response) => {
+  socialMedia.replaceOne({ id: request.params.id }, request.query, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+// delete specific socialMedia
+router.delete("/socialMedia/:id/", (request, response) => {
+  socialMedia.deleteOne({ id: request.params.id }, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
 // const users = [{ name: "rohan" }, { name: "sally" }];
 // router.param("id", (req, res, next, id) => {
 //   req.user = users[id];
