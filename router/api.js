@@ -477,45 +477,45 @@ router.get("/experience/", (request, response) => {
   });
 });
 
-// create socialMedia
+// create experience
 router.post("/experience/", (request, response) => {
-  experience.create(request.query, (err, socialMedia) => {
+  experience.create(request.query, (err, experience) => {
     if (!err) {
-      response.send(socialMedia);
+      response.send(experience);
     }
     console.log(err);
   });
 });
 
-// get specific socialMedia
+// get specific experience
 router.get("/experience/:id/", (request, response) => {
-  experience.findOne({ id: request.params.id }, (err, socialMedia) => {
+  experience.findOne({ id: request.params.id }, (err, experience) => {
     if (!err) {
-      response.send(socialMedia);
+      response.send(experience);
     }
     console.log(err);
   });
 });
 
-// update specific socialMedia
+// update specific experience
 router.put("/experience/:id/", (request, response) => {
   experience.replaceOne(
     { id: request.params.id },
     request.query,
-    (err, socialMedia) => {
+    (err, experience) => {
       if (!err) {
-        response.send(socialMedia);
+        response.send(experience);
       }
       console.log(err);
     }
   );
 });
 
-// delete specific socialMedia
+// delete specific experience
 router.delete("/experience/:id/", (request, response) => {
-  experience.deleteOne({ id: request.params.id }, (err, socialMedia) => {
+  experience.deleteOne({ id: request.params.id }, (err, experience) => {
     if (!err) {
-      response.send(socialMedia);
+      response.send(experience);
     }
     console.log(err);
   });
@@ -546,45 +546,45 @@ router.get("/clubPost/", (request, response) => {
   });
 });
 
-// create socialMedia
+// create clubPost
 router.post("/clubPost/", (request, response) => {
-  clubPost.create(request.query, (err, socialMedia) => {
+  clubPost.create(request.query, (err, clubPost) => {
     if (!err) {
-      response.send(socialMedia);
+      response.send(clubPost);
     }
     console.log(err);
   });
 });
 
-// get specific socialMedia
+// get specific clubPost
 router.get("/clubPost/:id/", (request, response) => {
-  clubPost.findOne({ id: request.params.id }, (err, socialMedia) => {
+  clubPost.findOne({ id: request.params.id }, (err, clubPost) => {
     if (!err) {
-      response.send(socialMedia);
+      response.send(clubPost);
     }
     console.log(err);
   });
 });
 
-// update specific socialMedia
+// update specific clubPost
 router.put("/clubPost/:id/", (request, response) => {
   clubPost.replaceOne(
     { id: request.params.id },
     request.query,
-    (err, socialMedia) => {
+    (err, clubPost) => {
       if (!err) {
-        response.send(socialMedia);
+        response.send(clubPost);
       }
       console.log(err);
     }
   );
 });
 
-// delete specific socialMedia
+// delete specific clubPost
 router.delete("/clubPost/:id/", (request, response) => {
-  clubPost.deleteOne({ id: request.params.id }, (err, socialMedia) => {
+  clubPost.deleteOne({ id: request.params.id }, (err, clubPost) => {
     if (!err) {
-      response.send(socialMedia);
+      response.send(clubPost);
     }
     console.log(err);
   });
@@ -603,45 +603,45 @@ router.get("/studentPost/", (request, response) => {
   });
 });
 
-// create socialMedia
+// create studentPost
 router.post("/studentPost/", (request, response) => {
-  studentPost.create(request.query, (err, socialMedia) => {
+  studentPost.create(request.query, (err, studentPost) => {
     if (!err) {
-      response.send(socialMedia);
+      response.send(studentPost);
     }
     console.log(err);
   });
 });
 
-// get specific socialMedia
+// get specific studentPost
 router.get("/studentPost/:id/", (request, response) => {
-  studentPost.findOne({ id: request.params.id }, (err, socialMedia) => {
+  studentPost.findOne({ id: request.params.id }, (err, studentPost) => {
     if (!err) {
-      response.send(socialMedia);
+      response.send(studentPost);
     }
     console.log(err);
   });
 });
 
-// update specific socialMedia
+// update specific studentPost
 router.put("/studentPost/:id/", (request, response) => {
   studentPost.replaceOne(
     { id: request.params.id },
     request.query,
-    (err, socialMedia) => {
+    (err, studentPost) => {
       if (!err) {
-        response.send(socialMedia);
+        response.send(studentPost);
       }
       console.log(err);
     }
   );
 });
 
-// delete specific socialMedia
+// delete specific studentPost
 router.delete("/studentPost/:id/", (request, response) => {
-  studentPost.deleteOne({ id: request.params.id }, (err, socialMedia) => {
+  studentPost.deleteOne({ id: request.params.id }, (err, studentPost) => {
     if (!err) {
-      response.send(socialMedia);
+      response.send(studentPost);
     }
     console.log(err);
   });
@@ -673,45 +673,45 @@ router.get("/clubOfStudent/", (request, response) => {
   });
 });
 
-// create socialMedia
+// create clubOfStudent
 router.post("/clubOfStudent/", (request, response) => {
-  clubOfStudent.create(request.query, (err, socialMedia) => {
+  clubOfStudent.create(request.query, (err, clubOfStudent) => {
     if (!err) {
-      response.send(socialMedia);
+      response.send(clubOfStudent);
     }
     console.log(err);
   });
 });
 
-// get specific socialMedia
+// get specific clubOfStudent
 router.get("/clubOfStudent/:id/", (request, response) => {
-  clubOfStudent.findOne({ id: request.params.id }, (err, socialMedia) => {
+  clubOfStudent.findOne({ id: request.params.id }, (err, clubOfStudent) => {
     if (!err) {
-      response.send(socialMedia);
+      response.send(clubOfStudent);
     }
     console.log(err);
   });
 });
 
-// update specific socialMedia
+// update specific clubOfStudent
 router.put("/clubOfStudent/:id/", (request, response) => {
   clubOfStudent.replaceOne(
     { id: request.params.id },
     request.query,
-    (err, socialMedia) => {
+    (err, clubOfStudent) => {
       if (!err) {
-        response.send(socialMedia);
+        response.send(clubOfStudent);
       }
       console.log(err);
     }
   );
 });
 
-// delete specific socialMedia
+// delete specific clubOfStudent
 router.delete("/clubOfStudent/:id/", (request, response) => {
-  clubOfStudent.deleteOne({ id: request.params.id }, (err, socialMedia) => {
+  clubOfStudent.deleteOne({ id: request.params.id }, (err, clubOfStudent) => {
     if (!err) {
-      response.send(socialMedia);
+      response.send(clubOfStudent);
     }
     console.log(err);
   });
@@ -743,48 +743,51 @@ router.get("/studentInterest/", (request, response) => {
   });
 });
 
-// create socialMedia
+// create studentInterest
 router.post("/studentInterest/", (request, response) => {
-  studentInterest.create(request.query, (err, socialMedia) => {
+  studentInterest.create(request.query, (err, studentInterest) => {
     if (!err) {
-      response.send(socialMedia);
+      response.send(studentInterest);
     }
     console.log(err);
   });
 });
 
-// get specific socialMedia
+// get specific studentInterest
 router.get("/studentInterest/:id/", (request, response) => {
-  studentInterest.findOne({ id: request.params.id }, (err, socialMedia) => {
+  studentInterest.findOne({ id: request.params.id }, (err, studentInterest) => {
     if (!err) {
-      response.send(socialMedia);
+      response.send(studentInterest);
     }
     console.log(err);
   });
 });
 
-// update specific socialMedia
+// update specific studentInterest
 router.put("/studentInterest/:id/", (request, response) => {
   studentInterest.replaceOne(
     { id: request.params.id },
     request.query,
-    (err, socialMedia) => {
+    (err, studentInterest) => {
       if (!err) {
-        response.send(socialMedia);
+        response.send(studentInterest);
       }
       console.log(err);
     }
   );
 });
 
-// delete specific socialMedia
+// delete specific studentInterest
 router.delete("/studentInterest/:id/", (request, response) => {
-  studentInterest.deleteOne({ id: request.params.id }, (err, socialMedia) => {
-    if (!err) {
-      response.send(socialMedia);
+  studentInterest.deleteOne(
+    { id: request.params.id },
+    (err, studentInterest) => {
+      if (!err) {
+        response.send(studentInterest);
+      }
+      console.log(err);
     }
-    console.log(err);
-  });
+  );
 });
 
 // get all interests of a specific user
