@@ -269,6 +269,14 @@ const clubOfStudentSchema = new Schema(
       type: String,
       required: true,
     },
+    position: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: false,
+    },
   },
   {
     timestamps: true,
