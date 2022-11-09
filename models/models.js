@@ -179,7 +179,7 @@ const studentSchema = new Schema(
     },
     about: { type: String, required: false },
     interests: [
-      // fields of interests
+      // fields of interests (array)
       {
         type: String,
         required: false,
@@ -190,10 +190,27 @@ const studentSchema = new Schema(
       required: false,
     },
     clubs: [{ type: String, required: false }], // clubs students are part of
-    socialMedia: [{
-      type: socialMediaSchema,
+    // social media
+    mobile: {
+      type: String,
       required: false,
-    }],
+    },
+    email: {
+      type: String,
+      required: false,
+    },
+    twitter: {
+      type: String,
+      required: false,
+    },
+    linkedin: {
+      type: String,
+      required: false,
+    },
+    instagram: {
+      type: String,
+      required: false,
+    },
   },
   {
     timestamps: true,
