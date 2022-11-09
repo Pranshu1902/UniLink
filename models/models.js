@@ -11,6 +11,14 @@ const collegeSchema = new Schema(
       type: Number,
       required: true,
     },
+    website: {
+      type: String,
+      required: false,
+    },
+    domain: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
@@ -359,7 +367,10 @@ const experience = mongoose.model("Experience", experienceSchema);
 const clubPost = mongoose.model("ClubPost", clubPostSchema);
 const studentPost = mongoose.model("StudentPost", studentPostSchema);
 const clubOfStudent = mongoose.model("ClubOfStudent", clubOfStudentSchema);
-const studentInterest = mongoose.model("StudentInterest", studentInterestSchema);
+const studentInterest = mongoose.model(
+  "StudentInterest",
+  studentInterestSchema
+);
 
 module.exports = {
   College,
