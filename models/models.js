@@ -169,7 +169,7 @@ const studentSchema = new Schema(
     },
     organizationId: {
       // college ID
-      type: Number,
+      type: String,
       required: true,
     },
     description: {
@@ -190,10 +190,10 @@ const studentSchema = new Schema(
       required: false,
     },
     clubs: [{ type: String, required: false }], // clubs students are part of
-    socialMedia: {
+    socialMedia: [{
       type: socialMediaSchema,
-      required: true,
-    },
+      required: false,
+    }],
   },
   {
     timestamps: true,

@@ -1,7 +1,26 @@
 const express = require("express");
 const { response } = require("../app");
 const router = express.Router();
-const { College, User, Club, Contest, Internship, Fellowship, Blog, socialMedia } = require("../models/models");
+const {
+  College,
+  User,
+  Club,
+  Contest,
+  Internship,
+  Fellowship,
+  Blog,
+  socialMedia,
+} = require("../models/models");
+
+// get students of a specific college
+router.get("/college/:id/users", (request, response) => {
+  User.find(
+    { where: { organizationId: request.params.id } },
+    (err, colleges) => {
+      response.send(colleges);
+    }
+  );
+});
 
 //
 // College APIs
@@ -246,12 +265,16 @@ router.get("/internship/:id/", (request, response) => {
 
 // update specific internship
 router.put("/internship/:id/", (request, response) => {
-  Internship.replaceOne({ id: request.params.id }, request.query, (err, user) => {
-    if (!err) {
-      response.send(user);
+  Internship.replaceOne(
+    { id: request.params.id },
+    request.query,
+    (err, user) => {
+      if (!err) {
+        response.send(user);
+      }
+      console.log(err);
     }
-    console.log(err);
-  });
+  );
 });
 
 // delete specific internship
@@ -299,12 +322,16 @@ router.get("/fellowship/:id/", (request, response) => {
 
 // update specific fellowship
 router.put("/fellowship/:id/", (request, response) => {
-  Fellowship.replaceOne({ id: request.params.id }, request.query, (err, user) => {
-    if (!err) {
-      response.send(user);
+  Fellowship.replaceOne(
+    { id: request.params.id },
+    request.query,
+    (err, user) => {
+      if (!err) {
+        response.send(user);
+      }
+      console.log(err);
     }
-    console.log(err);
-  });
+  );
 });
 
 // delete specific fellowship
@@ -458,12 +485,16 @@ router.get("/socialMedia/:id/", (request, response) => {
 
 // update specific socialMedia
 router.put("/socialMedia/:id/", (request, response) => {
-  socialMedia.replaceOne({ id: request.params.id }, request.query, (err, socialMedia) => {
-    if (!err) {
-      response.send(socialMedia);
+  socialMedia.replaceOne(
+    { id: request.params.id },
+    request.query,
+    (err, socialMedia) => {
+      if (!err) {
+        response.send(socialMedia);
+      }
+      console.log(err);
     }
-    console.log(err);
-  });
+  );
 });
 
 // delete specific socialMedia
