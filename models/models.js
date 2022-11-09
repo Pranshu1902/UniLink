@@ -159,34 +159,6 @@ const fellowshipSchema = new Schema(
   }
 );
 
-const socialMediaSchema = new Schema(
-  {
-    mobile: {
-      type: String,
-      required: false,
-    },
-    email: {
-      type: String,
-      required: false,
-    },
-    twitter: {
-      type: String,
-      required: false,
-    },
-    linkedin: {
-      type: String,
-      required: false,
-    },
-    instagram: {
-      type: String,
-      required: false,
-    },
-  },
-  {
-    collection: "socialMedia",
-  }
-);
-
 const studentSchema = new Schema(
   {
     name: {
@@ -370,7 +342,6 @@ const Internship = mongoose.model("Internship", internshipSchema);
 const Fellowship = mongoose.model("Fellowship", fellowshipSchema);
 const Chat = mongoose.model("Chats", chatSchema);
 const Blog = mongoose.model("Blogs", blogSchema);
-const socialMedia = mongoose.model("Social Media", socialMediaSchema);
 const experience = mongoose.model("Experience", experienceSchema);
 const clubPost = mongoose.model("ClubPost", clubPostSchema);
 const studentPost = mongoose.model("StudentPost", studentPostSchema);
@@ -389,7 +360,6 @@ module.exports = {
   Fellowship,
   Chat,
   Blog,
-  socialMedia,
   experience,
   clubPost,
   studentPost,
