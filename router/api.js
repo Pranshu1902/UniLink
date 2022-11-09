@@ -235,6 +235,16 @@ router.delete("/contest/:id/", (request, response) => {
   });
 });
 
+// get all contests of a specific college
+router.get("/college/:id/contest", (request, response) => {
+  Contest.find({ collegeId: request.params.id }, (err, user) => {
+    if (!err) {
+      response.send(user);
+    }
+    console.log(err);
+  });
+});
+
 //
 // Internship APIs
 //
