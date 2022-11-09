@@ -32,6 +32,13 @@ const contestSchema = new Schema(
       type: String, // like hackathon, racing, etc.
       required: false,
     },
+    // club ID for the event
+    clubId: { type: String, required: true },
+    // college ID for contest
+    collegeId: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true, collation: "contests" }
 );
@@ -50,16 +57,35 @@ const clubSchema = new Schema(
       type: Number,
       required: true,
     },
-    post: [
-      {
-        type: String,
-        required: false,
-      },
-    ],
+    collegeId: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
     collection: "clubs",
+  }
+);
+
+const experienceSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    userId: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+    collection: "experience",
   }
 );
 
@@ -178,18 +204,6 @@ const studentSchema = new Schema(
       required: true,
     },
     about: { type: String, required: false },
-    interests: [
-      // fields of interests (array)
-      {
-        type: String,
-        required: false,
-      },
-    ],
-    post: {
-      type: String,
-      required: false,
-    },
-    clubs: [{ type: String, required: false }], // clubs students are part of
     // social media
     mobile: {
       type: String,
@@ -215,6 +229,78 @@ const studentSchema = new Schema(
   {
     timestamps: true,
     collection: "users",
+  }
+);
+
+// interest of students
+const studentInterestSchema = new Schema(
+  {
+    text: {
+      type: String,
+      required: true,
+    },
+    userId: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+    collection: "users",
+  }
+);
+
+// model to get clubs a student is part of
+const clubOfStudentSchema = new Schema(
+  {
+    userId: {
+      type: String,
+      required: true,
+    },
+    clubId: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+    collection: "clubOfStudent",
+  }
+);
+
+// model for posts by club
+const clubPostSchema = new Schema(
+  {
+    text: {
+      type: String,
+      required: true,
+    },
+    clubId: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+    collection: "clubPost",
+  }
+);
+
+// model for posts by students
+const studentPostSchema = new Schema(
+  {
+    text: {
+      type: String,
+      required: true,
+    },
+    userId: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+    collection: "userPost",
   }
 );
 
@@ -269,6 +355,11 @@ const Fellowship = mongoose.model("Fellowship", fellowshipSchema);
 const Chat = mongoose.model("Chats", chatSchema);
 const Blog = mongoose.model("Blogs", blogSchema);
 const socialMedia = mongoose.model("Social Media", socialMediaSchema);
+const experience = mongoose.model("Experience", experienceSchema);
+const clubPost = mongoose.model("ClubPost", clubPostSchema);
+const studentPost = mongoose.model("StudentPost", studentPostSchema);
+const clubOfStudent = mongoose.model("ClubOfStudent", clubOfStudentSchema);
+const studentInterest = mongoose.model("StudentInterest", studentInterestSchema);
 
 module.exports = {
   College,
@@ -280,4 +371,9 @@ module.exports = {
   Chat,
   Blog,
   socialMedia,
+  experience,
+  clubPost,
+  studentPost,
+  clubOfStudent,
+  studentInterest,
 };

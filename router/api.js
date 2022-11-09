@@ -10,6 +10,11 @@ const {
   Fellowship,
   Blog,
   socialMedia,
+  experience,
+  clubPost,
+  studentPost,
+  clubOfStudent,
+  studentInterest,
 } = require("../models/models");
 
 // get students of a specific college
@@ -507,10 +512,340 @@ router.delete("/socialMedia/:id/", (request, response) => {
   });
 });
 
-// const users = [{ name: "rohan" }, { name: "sally" }];
-// router.param("id", (req, res, next, id) => {
-//   req.user = users[id];
-//   next(); //next fn
-// });
+//
+// experience APIs
+//
+// get all experience
+router.get("/experience/", (request, response) => {
+  experience.find({}, (err, users) => {
+    if (!err) {
+      response.send(users);
+    }
+    console.log(err);
+  });
+});
+
+// create socialMedia
+router.post("/experience/", (request, response) => {
+  experience.create(request.query, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+// get specific socialMedia
+router.get("/experience/:id/", (request, response) => {
+  experience.findOne({ id: request.params.id }, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+// update specific socialMedia
+router.put("/experience/:id/", (request, response) => {
+  experience.replaceOne(
+    { id: request.params.id },
+    request.query,
+    (err, socialMedia) => {
+      if (!err) {
+        response.send(socialMedia);
+      }
+      console.log(err);
+    }
+  );
+});
+
+// delete specific socialMedia
+router.delete("/experience/:id/", (request, response) => {
+  experience.deleteOne({ id: request.params.id }, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+router.get("/user/:id/experience", (request, response) => {
+  experience.find(
+    { where: { userId: request.params.id } },
+    (err, experiences) => {
+      if (!err) {
+        response.send(experiences);
+      }
+      console.log(err);
+    }
+  );
+});
+
+//
+// clubPost APIs
+//
+// get all experience
+router.get("/clubPost/", (request, response) => {
+  clubPost.find({}, (err, users) => {
+    if (!err) {
+      response.send(users);
+    }
+    console.log(err);
+  });
+});
+
+// create socialMedia
+router.post("/clubPost/", (request, response) => {
+  clubPost.create(request.query, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+// get specific socialMedia
+router.get("/clubPost/:id/", (request, response) => {
+  clubPost.findOne({ id: request.params.id }, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+// update specific socialMedia
+router.put("/clubPost/:id/", (request, response) => {
+  clubPost.replaceOne(
+    { id: request.params.id },
+    request.query,
+    (err, socialMedia) => {
+      if (!err) {
+        response.send(socialMedia);
+      }
+      console.log(err);
+    }
+  );
+});
+
+// delete specific socialMedia
+router.delete("/clubPost/:id/", (request, response) => {
+  clubPost.deleteOne({ id: request.params.id }, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+//
+// studentPost APIs
+//
+// get all studentPost
+router.get("/studentPost/", (request, response) => {
+  studentPost.find({}, (err, users) => {
+    if (!err) {
+      response.send(users);
+    }
+    console.log(err);
+  });
+});
+
+// create socialMedia
+router.post("/studentPost/", (request, response) => {
+  studentPost.create(request.query, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+// get specific socialMedia
+router.get("/studentPost/:id/", (request, response) => {
+  studentPost.findOne({ id: request.params.id }, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+// update specific socialMedia
+router.put("/studentPost/:id/", (request, response) => {
+  studentPost.replaceOne(
+    { id: request.params.id },
+    request.query,
+    (err, socialMedia) => {
+      if (!err) {
+        response.send(socialMedia);
+      }
+      console.log(err);
+    }
+  );
+});
+
+// delete specific socialMedia
+router.delete("/studentPost/:id/", (request, response) => {
+  studentPost.deleteOne({ id: request.params.id }, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+// get all posts by a specific user
+router.get("/user/:id/studentPost", (request, response) => {
+  studentPost.find(
+    { where: { userId: request.params.id } },
+    (err, studentPosts) => {
+      if (!err) {
+        response.send(studentPosts);
+      }
+      console.log(err);
+    }
+  );
+});
+
+//
+// clubOfStudent APIs
+//
+// get all clubOfStudent
+router.get("/clubOfStudent/", (request, response) => {
+  clubOfStudent.find({}, (err, users) => {
+    if (!err) {
+      response.send(users);
+    }
+    console.log(err);
+  });
+});
+
+// create socialMedia
+router.post("/clubOfStudent/", (request, response) => {
+  clubOfStudent.create(request.query, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+// get specific socialMedia
+router.get("/clubOfStudent/:id/", (request, response) => {
+  clubOfStudent.findOne({ id: request.params.id }, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+// update specific socialMedia
+router.put("/clubOfStudent/:id/", (request, response) => {
+  clubOfStudent.replaceOne(
+    { id: request.params.id },
+    request.query,
+    (err, socialMedia) => {
+      if (!err) {
+        response.send(socialMedia);
+      }
+      console.log(err);
+    }
+  );
+});
+
+// delete specific socialMedia
+router.delete("/clubOfStudent/:id/", (request, response) => {
+  clubOfStudent.deleteOne({ id: request.params.id }, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+// get all clubs a student belongs to
+router.get("/user/:id/clubOfStudent", (request, response) => {
+  clubOfStudent.find(
+    { where: { userId: request.params.id } },
+    (err, clubOfStudents) => {
+      if (!err) {
+        response.send(clubOfStudents);
+      }
+      console.log(err);
+    }
+  );
+});
+
+//
+// studentInterest APIs
+//
+// get all experience
+router.get("/studentInterest/", (request, response) => {
+  studentInterest.find({}, (err, users) => {
+    if (!err) {
+      response.send(users);
+    }
+    console.log(err);
+  });
+});
+
+// create socialMedia
+router.post("/studentInterest/", (request, response) => {
+  studentInterest.create(request.query, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+// get specific socialMedia
+router.get("/studentInterest/:id/", (request, response) => {
+  studentInterest.findOne({ id: request.params.id }, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+// update specific socialMedia
+router.put("/studentInterest/:id/", (request, response) => {
+  studentInterest.replaceOne(
+    { id: request.params.id },
+    request.query,
+    (err, socialMedia) => {
+      if (!err) {
+        response.send(socialMedia);
+      }
+      console.log(err);
+    }
+  );
+});
+
+// delete specific socialMedia
+router.delete("/studentInterest/:id/", (request, response) => {
+  studentInterest.deleteOne({ id: request.params.id }, (err, socialMedia) => {
+    if (!err) {
+      response.send(socialMedia);
+    }
+    console.log(err);
+  });
+});
+
+// get all interests of a specific user
+router.get("/user/:id/studentInterest", (request, response) => {
+  studentInterest.find(
+    { where: { userId: request.params.id } },
+    (err, experiences) => {
+      if (!err) {
+        response.send(experiences);
+      }
+      console.log(err);
+    }
+  );
+});
 
 module.exports = router;
