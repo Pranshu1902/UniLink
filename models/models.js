@@ -183,7 +183,7 @@ const studentSchema = new Schema(
       type: String,
       required: true,
     },
-    about: { type: String, required: false },
+    about: { type: String, required: false }, // optional
     // social media
     mobile: {
       type: String,
