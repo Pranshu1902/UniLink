@@ -142,13 +142,21 @@ router.get("/user/", (request, response) => {
 });
 
 // create user
-router.post("/user/", (request, response) => {
-  User.create(request.query, (err, user) => {
-    if (!err) {
-      response.send(user);
-    }
-    console.log(err);
-  });
+router.post("/user/", async (request, response) => {
+  console.log(request.query);
+  const email = JSON.stringify(request.query.email);
+  const domain = email.substring(email.lastIndexOf("@") + 1);
+  console.log(domain);
+
+  try {
+    const college = await College.findOne({ where: { domain: domain } });
+    request.query.organizationId = college.id;
+    const res = await User.create(request.query);
+    response.send(res);
+  } catch (error) {
+    console.log(error);
+    response.send(error);
+  }
 });
 
 // get specific user
