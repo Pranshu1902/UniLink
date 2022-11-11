@@ -171,15 +171,14 @@ router.get("/user/:id/", (request, response) => {
 
 // login user
 router.post("/user/login/", (request, response) => {
-  User.findOne(
-    { email: request.query.email, password: request.query.password },
-    (err, user) => {
-      if (!err) {
-        response.send(user);
-      }
-      console.log(err);
-    }
-  );
+  try {
+    User.findOne({
+      where: { email: request.query.email, password: request.query.password },
+    });
+  } catch (error) {
+    console.log(error);
+    response.send(error);
+  }
 });
 
 // update specific user
