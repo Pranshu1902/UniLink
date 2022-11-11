@@ -163,7 +163,7 @@ const studentSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
+      required: false,
     },
     email: {
       type: String,
@@ -181,7 +181,7 @@ const studentSchema = new Schema(
     description: {
       // short description for user's tagline
       type: String,
-      required: true,
+      required: false,
     },
     about: { type: String, required: false }, // optional
     // social media

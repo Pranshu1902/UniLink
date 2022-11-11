@@ -169,6 +169,19 @@ router.get("/user/:id/", (request, response) => {
   });
 });
 
+// login user
+router.post("/user/login/", (request, response) => {
+  User.findOne(
+    { email: request.query.email, password: request.query.password },
+    (err, user) => {
+      if (!err) {
+        response.send(user);
+      }
+      console.log(err);
+    }
+  );
+});
+
 // update specific user
 router.put("/user/:id/", (request, response) => {
   User.replaceOne({ id: request.params.id }, request.query, (err, user) => {
