@@ -710,14 +710,25 @@ router.get("/clubOfStudent/", (request, response) => {
   });
 });
 
+router.get("/clubs/student/:id/", async (request, response) => {
+  try {
+    const res = await clubOfStudent.find({
+      where: { userId: request.params.id },
+    });
+    response.send(res);
+  } catch (error) {
+    response.send(error);
+  }
+});
+
 // create clubOfStudent
-router.post("/clubOfStudent/", (request, response) => {
-  clubOfStudent.create(request.query, (err, clubOfStudent) => {
-    if (!err) {
-      response.send(clubOfStudent);
-    }
-    console.log(err);
-  });
+router.post("/clubOfStudent/", async (request, response) => {
+  try {
+    const res = await clubOfStudent.create(request.query);
+    response.send(res);
+  } catch (error) {
+    response.send(error);
+  }
 });
 
 // get specific clubOfStudent
