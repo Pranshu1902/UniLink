@@ -95,11 +95,13 @@ router.get("/college/:id/clubs/", async (request, response) => {
 });
 
 // get club by id
-router.get("/clubs/:id/", (request, response) => {
-  Club.findById(request.params.id, (err, clubs) => {
-    console.log(err);
-    response.send(clubs);
-  });
+router.get("/clubs/:id/", async (request, response) => {
+  try {
+    const res = await Club.findById(request.params.id);
+    response.send(res);
+  } catch (error) {
+    response.send(error);
+  }
 });
 
 // create new club
