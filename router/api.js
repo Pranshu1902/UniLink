@@ -733,6 +733,16 @@ router.post("/clubOfStudent/", async (request, response) => {
   }
 });
 
+// get specific club and student
+router.get("/clubOfStudent/student/", async (request, response) => {
+  try {
+    const res = await clubOfStudent.findOne(request.query);
+    response.send(res);
+  } catch (error) {
+    response.send(error);
+  }
+});
+
 // get specific clubOfStudent
 router.get("/clubOfStudent/:id/", (request, response) => {
   clubOfStudent.findOne({ id: request.params.id }, (err, clubOfStudent) => {
