@@ -82,6 +82,18 @@ router.get("/clubs/", (request, response) => {
   });
 });
 
+// get all clubs of a college
+router.get("/college/:id/clubs/", async (request, response) => {
+  try {
+    const res = await Club.find({
+      where: { collegeId: request.params.id },
+    });
+    response.send(res);
+  } catch (error) {
+    response.send(error);
+  }
+});
+
 // get club by id
 router.get("/clubs/:id/", (request, response) => {
   Club.findById(request.params.id, (err, clubs) => {
@@ -91,17 +103,19 @@ router.get("/clubs/:id/", (request, response) => {
 });
 
 // create new club
-router.post("/clubs/", (request, response) => {
+router.post("/college/:id/clubs/", async (request, response) => {
   console.log("creating club...");
-  console.log(request);
-  Club.create(request.query, (err, club) => {
-    if (!err) {
-      response.send(club);
-    } else {
-      console.log("Failed");
-    }
-  });
-  console.log("club created!");
+  try {
+    const res = await Club.create({
+      name: request.query.name,
+      yearFounded: request.query.yearFounded,
+      numberOfMembers: request.query.numberOfMembers,
+      collegeId: request.params.id,
+    });
+    response.send(res);
+  } catch (error) {
+    response.send(error);
+  }
 });
 
 // update club details
