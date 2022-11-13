@@ -170,14 +170,17 @@ router.get("/user/:id/", (request, response) => {
 });
 
 // login user
-router.post("/user/login/", (request, response) => {
+router.post("/user/login/", async (request, response) => {
   try {
-    User.findOne({
-      where: { email: request.query.email, password: request.query.password },
+    const res = await User.exists({
+      email: request.query.email,
+      password: request.query.password,
     });
+    response.send(res);
   } catch (error) {
     console.log(error);
-    response.send(error);
+    console.log("Invalid credentitials");
+    response.send({ success: false });
   }
 });
 
