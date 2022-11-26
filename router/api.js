@@ -48,6 +48,18 @@ router.post("/college/", (request, response) => {
   });
 });
 
+// get college by id
+router.get("/college/:id/", async (request, response) => {
+  try {
+    const res = await College.findById(request.params.id);
+    if (res && res._id) {
+      response.send(res);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 // delete a college
 router.delete("/college/:id/", (request, response) => {
   College.deleteOne({ id: request.params.id }, (err, res) => {
