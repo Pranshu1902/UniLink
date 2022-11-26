@@ -202,7 +202,7 @@ router.get("/user/:id/", async (request, response) => {
 // login user
 router.post("/user/login/", async (request, response) => {
   try {
-    const res = await User.exists({
+    const res = await User.findOne({
       email: request.query.email,
       password: request.query.password,
     });
