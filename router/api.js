@@ -852,29 +852,25 @@ router.put("/studentInterest/:id/", (request, response) => {
 });
 
 // delete specific studentInterest
-router.delete("/studentInterest/:id/", (request, response) => {
-  studentInterest.deleteOne(
-    { id: request.params.id },
-    (err, studentInterest) => {
-      if (!err) {
-        response.send(studentInterest);
-      }
-      console.log(err);
-    }
-  );
+router.delete("/studentInterest/:id/", async (request, response) => {
+  try {
+    const res = await studentInterest.findByIdAndDelete(request.params.id);
+    response.send(res);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // get all interests of a specific user
-router.get("/user/:id/studentInterest", (request, response) => {
-  studentInterest.find(
-    { where: { userId: request.params.id } },
-    (err, experiences) => {
-      if (!err) {
-        response.send(experiences);
-      }
-      console.log(err);
-    }
-  );
+router.get("/user/:id/interests/", async (request, response) => {
+  try {
+    const res = await studentInterest.find({
+      userId: request.params.id,
+    });
+    response.send(res);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;
