@@ -176,13 +176,15 @@ router.post("/user/", async (request, response) => {
 });
 
 // get specific user
-router.get("/user/:id/", (request, response) => {
-  User.findOne({ id: request.params.id }, (err, user) => {
-    if (!err) {
-      response.send(user);
+router.get("/user/:id/", async (request, response) => {
+  try {
+    const res = await User.findById(request.params.id);
+    if (res && res._id) {
+      response.send(res);
     }
-    console.log(err);
-  });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // login user
